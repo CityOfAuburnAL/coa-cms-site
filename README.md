@@ -1,13 +1,13 @@
-# \<REPLACE-ME\>
+# \<coa-cms-site\>
 
-> REPLACE-DESCRIPTION
+> Site element - Only Use in CMS App
 
-REPLACE-DESCRIPTION
+Site element - Only Use in CMS App
 
 ```html
-<REPLACE-ME
-  >
-</REPLACE-ME>
+<coa-cms-site
+  site-id="1">
+</coa-cms-site>
 ```
 
 ## Usage
@@ -15,13 +15,13 @@ REPLACE-DESCRIPTION
 Add the library using the Javascript package manager [Bower](http://bower.io/):
 
 ```shell
-$ bower install --save REPLACE-ME
+$ bower install --save coa-cms-site
 ```
 
 Or clone this repository inside your project folder using Git:
 
 ```shell
-$ git clone https://github.com/CityOfAuburnAL/REPLACE-ME.git
+$ git clone https://github.com/CityOfAuburnAL/coa-cms-site.git
 ```
 
 ## Properties
@@ -52,7 +52,7 @@ Then, run Polymer serve from the repo directory with:
 $ polymer serve
 ```
 
-Then open localhost:8080/components/REPLACE-ME/demo/ in your browser.
+Then open localhost:8080/components/coa-cms-site/demo/ in your browser.
 
 For more information about Polymer CLI have a look at the
 [official documentation](https://www.polymer-project.org/1.0/start/first-element/intro)

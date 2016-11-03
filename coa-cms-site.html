@@ -1,0 +1,73 @@
+<link rel="import" href="../polymer/polymer.html" />
+<link rel="import" href="../iron-ajax/iron-ajax.html" />
+<link rel="import" href="../coa-ajax/coa-ajax.html" />
+
+<dom-module id="coa-cms-site">
+	<template>
+		<style>
+			dl dt:first-of-type {
+				display: none;
+			}
+			dl dd:first-of-type {
+				font-size: 1.2rem;
+				font-weight: 600;
+				margin: 0;
+				padding-bottom: 0.2rem; 
+				text-transform: uppercase;
+			}
+			dd ul {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			dd li {
+				display: inline-block;
+			}
+			dd li + li {
+				margin-left: 1rem;
+			}
+		</style>
+
+		<coa-ajax>
+			<iron-ajax auto url="http://api.localhost/cms/site/[[siteId]]"
+						last-response="{{site}}"
+						on-response="handleSite"></iron-ajax>
+			<iron-ajax auto url="http://api.localhost/cms/site/[[siteId]]/assets"
+						last-response="{{assets}}"></iron-ajax>
+		</coa-ajax>
+
+		<dl>
+			<dt>Name</dt>
+			<dd><a href="[[site.URL]]">[[site.Name]]</a></dd>
+			<dt>Assets</dt>
+			<dd>
+				<ul>
+					<template is="dom-repeat" items="[[assets]]">
+						<li><a href="site-asset-editor.html?site=[[site.ID]]&name=[[item.name]]&type=[[item.type]]">[[item.name]][[item.type]]</a></li>
+					</template>
+				</ul>
+			</dd>
+			<dt>Regions</dt>
+			<dd>
+				<ul>
+					<template is="dom-repeat" items="[[regions]]">
+						<li><a href="site-region-editor.html?site=[[site.ID]]&name=[[item]]&type=[[item]]">[[item]]</a></li>
+					</template>
+				</ul>
+			</dd>
+		</dl>
+		
+	</template>
+	<script>
+		Polymer({
+			is: 'coa-cms-site',
+			properties: {
+				siteId: Number
+			},
+			handleSite: function() {
+				var siteRegions = JSON.parse(this.site.Regions);
+				this.regions = Object.keys(siteRegions);
+			}
+		});
+	</script>
+</dom-module>
