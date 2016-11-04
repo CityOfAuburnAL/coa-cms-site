@@ -38,12 +38,12 @@
 
 		<dl>
 			<dt>Name</dt>
-			<dd><a href="[[site.URL]]">[[site.Name]]</a></dd>
+			<dd><a href="[[site.URL]]" target="_blank">[[site.Name]]</a></dd>
 			<dt>Assets</dt>
 			<dd>
 				<ul>
 					<template is="dom-repeat" items="[[assets]]">
-						<li><a href="site-asset-editor.html?site=[[site.ID]]&name=[[item.name]]&type=[[item.type]]">[[item.name]][[item.type]]</a></li>
+						<li><a href="./site/[[site.ID]]/asset?site=[[site.ID]]&name=[[item.name]]&type=[[item.type]]&path=[[item.path]]">[[item.name]][[item.type]]</a></li>
 					</template>
 				</ul>
 			</dd>
@@ -51,7 +51,7 @@
 			<dd>
 				<ul>
 					<template is="dom-repeat" items="[[regions]]">
-						<li><a href="site-region-editor.html?site=[[site.ID]]&name=[[item]]&type=[[item]]">[[item]]</a></li>
+						<li><a href="./site/[[site.ID]]/region?name=[[item]]">[[item]]</a></li>
 					</template>
 				</ul>
 			</dd>
@@ -62,7 +62,19 @@
 		Polymer({
 			is: 'coa-cms-site',
 			properties: {
-				siteId: Number
+				siteId: Number,
+				site: {
+					type: Object,
+					notify: true
+				},
+				assets: {
+					type: Object,
+					notify: true
+				},
+				regions: {
+					type: Array,
+					notify: true
+				}
 			},
 			handleSite: function() {
 				var siteRegions = JSON.parse(this.site.Regions);
